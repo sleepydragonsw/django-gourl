@@ -8,19 +8,9 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
-class UrlEntry(models.Model):
+class Url(models.Model):
     name = models.CharField(max_length=256)
+    url = models.CharField(max_length=4096)
 
     def __str__(self):
         return self.name
-
-
-@python_2_unicode_compatible
-class UrlInfo(models.Model):
-    url_entry = models.ForeignKey(UrlEntry)
-    version = models.IntegerField()
-    url = models.CharField(max_length=4096)
-    visible = models.BooleanField()
-
-    def __str__(self):
-        return self.url

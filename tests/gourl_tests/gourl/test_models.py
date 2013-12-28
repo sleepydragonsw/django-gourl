@@ -3,23 +3,14 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from gourl.gourl.models import UrlEntry
-from gourl.gourl.models import UrlInfo
+from gourl.gourl.models import Url
 
 import django.test
 
 
-class Test_UrlEntry(django.test.TestCase):
+class Test_Url(django.test.TestCase):
 
     def test_StringRepresentation(self):
-        x = UrlEntry(name="blah")
+        x = Url(name="foo", url="bar")
         retval = "{}".format(x)
-        self.assertEqual(retval, u"blah")
-
-
-class Test_UrlInfo(django.test.TestCase):
-
-    def test_StringRepresentation(self):
-        x = UrlInfo(url="blah")
-        retval = "{}".format(x)
-        self.assertEqual(retval, u"blah")
+        self.assertEqual(retval, u"foo")
