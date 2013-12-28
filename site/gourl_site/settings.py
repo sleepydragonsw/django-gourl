@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gourl.app',
+    'gourl.gourl',
 )
 
 MIDDLEWARE_CLASSES = (
