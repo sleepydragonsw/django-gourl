@@ -12,6 +12,7 @@ Existing Go URLs:
 <table>
 {% for url in urls %}
     <tr><td>
+    {{url.id}}
     <a href="{{url.url}}">{{url.name}}</a>
     <a href="{{url.url}}">{{url.url}}</a>
     </td></tr>
