@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf8">
+<title>GoUrl</title>
+</head>
+
+<body>
+Existing Go URLs:
+
+<table>
+{% for url in urls %}
+    <tr><td>
+    <a href="{{url.url}}">{{url.name}}</a>
+    <a href="{{url.url}}">{{url.url}}</a>
+    </td></tr>
+{% endfor %}
+</table>
+</body>
+
+</html>

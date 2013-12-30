@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+
+from __future__ import print_function
+from __future__ import unicode_literals
+
+from django.conf.urls import patterns
+from django.conf.urls import url
+
+import gourl.gourl.views
+
+urlpatterns = patterns("",
+    url(r"^$", gourl.gourl.views.index, name="index"),
+    url(r"^add/$", gourl.gourl.views.add, name="add"),
+    url(r"^remove/(?P<url_id>\d+)/$", gourl.gourl.views.remove, name="remove"),
+)
