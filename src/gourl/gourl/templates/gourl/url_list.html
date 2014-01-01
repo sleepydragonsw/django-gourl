@@ -7,7 +7,7 @@ Go URL List
 {% block content %}
 
 <table>
-{% for url in urls %}
+{% for url in url_list %}
     <tr><td>
     {{url.id}}
     <a href="{{url.url}}">{{url.name}}</a>

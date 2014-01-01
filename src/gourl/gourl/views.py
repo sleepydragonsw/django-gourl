@@ -10,12 +10,17 @@ from gourl.gourl.models import Url
 from django.shortcuts import get_object_or_404
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+import django.views.generic
 
 
-def index(request):
-    urls = Url.objects.all().order_by("name")
-    context = {"urls": urls}
-    return render(request, "gourl/index.html", context)
+class IndexView(django.views.generic.ListView):
+    queryset = Url.objects.all().order_by("name")
+
+
+def redirect(request, name):
+    url_object = get_object_or_404(Url, name__iexact=name)
+    redirect_url = url_object.url
+    return HttpResponseRedirect(redirect_url)
 
 
 def add(request):
