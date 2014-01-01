@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf8">
+<title>GoUrl</title>
+</head>
+
+<body>
+
+<h1>{% block title %}GoUrl{% endblock title %}</h1>
+
+{% if error %}
+<div>
+{{ error }}
+</div>
+{% endif %}
+
+<div>
+{% block content %}
+{% endblock content %}
+</div>
+
+</body>
+
+</html>
