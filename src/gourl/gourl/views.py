@@ -52,5 +52,5 @@ def add(request):
 
 def remove(request, url_id):
     url = get_object_or_404(Url, pk=url_id)
-    return HttpResponse(
-        "This is the GoUrl remove page for URL: {}".format(url))
+    url.delete()
+    return HttpResponseRedirect(reverse("gourl:index"))

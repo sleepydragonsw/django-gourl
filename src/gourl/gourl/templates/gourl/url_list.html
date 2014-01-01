@@ -6,14 +6,25 @@ Go URL List
 
 {% block content %}
 
+<div>
+<a href="{% url "gourl:add" %}">Add URL</a>
+<br/>
+<br/>
+</div>
+
 <table>
 {% for url in url_list %}
-    <tr><td>
-    {{url.id}}
-    <a href="{{url.url}}">{{url.name}}</a>
-    <a href="{{url.url}}">{{url.url}}</a>
-    </td></tr>
+    <tr>
+        <td><a href="{{url.url}}">{{url.name}}</a></td>
+        <td><a href="{{url.url}}">{{url.url}}</a></td>
+        <td><a href="{% url "gourl:remove" url.id %}">Remove</a></td>
+    </tr>
 {% endfor %}
 </table>
+
+<div>
+<br/>
+<a href="{% url "gourl:add" %}">Add URL</a>
+</div>
 
 {% endblock content %}
