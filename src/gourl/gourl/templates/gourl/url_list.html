@@ -15,7 +15,7 @@ Go URL List
 <table>
 {% for url in url_list %}
     <tr>
-        <td><a href="{{url.url}}">{{url.name}}</a></td>
+        <td><a href="{% url "gourl:redirect" url.name %}">{{url.name}}</a></td>
         <td><a href="{{url.url}}">{{url.url}}</a></td>
         <td><a href="{% url "gourl:remove" url.id %}">Remove</a></td>
     </tr>
