@@ -14,11 +14,11 @@ urlpatterns = patterns("",
         gourl.gourl.views.IndexView.as_view(),
         name="index"),
     url(
-        r"^add/$",
+        r"^actions/add/$",
         gourl.gourl.views.add,
         name="add"),
     url(
-        r"^remove/(?P<url_id>\d+)/$",
+        r"^actions/remove/(?P<url_id>\d+)/$",
         gourl.gourl.views.remove,
         name="remove"),
     url(
