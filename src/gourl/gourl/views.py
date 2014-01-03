@@ -4,16 +4,15 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.http.response import HttpResponse
-
-from gourl.gourl.models import Url
 from django.shortcuts import get_object_or_404
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-import django.views.generic
+from django.views.generic import ListView
+
+from gourl.gourl.models import Url
 
 
-class IndexView(django.views.generic.ListView):
+class IndexView(ListView):
     queryset = Url.objects.all().order_by("name")
 
 

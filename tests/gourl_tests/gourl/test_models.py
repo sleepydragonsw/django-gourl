@@ -14,3 +14,18 @@ class Test_Url(django.test.TestCase):
         x = Url(name="foo", url="bar")
         retval = "{}".format(x)
         self.assertEqual(retval, u"foo")
+
+    def test_InitialValues(self):
+        x = Url()
+        self.assertEqual(x.name, "")
+        self.assertEqual(x.url, "")
+
+    def test_Save(self):
+        x = Url()
+        x.name = "abc"
+        x.url = "def"
+        x.save()
+        url_id = x.id
+        url2 = Url.objects.get(pk=url_id)
+        self.assertEqual(url2.name, "abc")
+        self.assertEqual(url2.url, "def")

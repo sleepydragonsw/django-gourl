@@ -7,6 +7,7 @@ from django.conf.urls import patterns
 from django.conf.urls import url
 
 import gourl.gourl.views
+import gourl.gourl.webapi
 
 urlpatterns = patterns("",
     url(
@@ -21,6 +22,10 @@ urlpatterns = patterns("",
         r"^actions/remove/(?P<url_id>\d+)/$",
         gourl.gourl.views.remove,
         name="remove"),
+    url(
+        r"^actions/api/$",
+        gourl.gourl.webapi.WebApi.as_view(),
+        name="api"),
     url(
         r"^(?P<name>.*)$",
         gourl.gourl.views.redirect,
