@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-from gourl.gourl.models import Url
+from .models import Url
 
 
 class UrlAdmin(admin.ModelAdmin):

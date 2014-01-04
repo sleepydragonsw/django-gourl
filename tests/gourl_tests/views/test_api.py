@@ -11,7 +11,7 @@ import unittest
 from django.test import TestCase
 from django.test.client import RequestFactory
 
-from gourl.gourl.views.api import WebApi
+from gourl.views.api import WebApi
 
 try:
     from unittest import mock

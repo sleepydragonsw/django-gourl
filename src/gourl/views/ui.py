@@ -11,7 +11,7 @@ from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView
 
-from gourl.gourl.models import Url
+from ..models import Url
 
 
 class IndexView(ListView):

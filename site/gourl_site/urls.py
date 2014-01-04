@@ -10,13 +10,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-import gourl.gourl.urls
+import gourl.urls
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'gourl_site.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', include(gourl.gourl.urls, namespace="gourl")),
+    url(r'', include(gourl.urls, namespace="gourl")),
 )

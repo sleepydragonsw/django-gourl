@@ -10,7 +10,7 @@ import json
 from django.http import HttpResponse
 from django.views.generic import View
 
-from gourl.gourl.models import Url
+from ..models import Url
 
 
 class WebApi(View):

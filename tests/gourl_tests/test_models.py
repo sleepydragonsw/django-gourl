@@ -5,7 +5,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from gourl.gourl.models import Url
+from gourl.models import Url
 
 import django.test
 
