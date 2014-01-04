@@ -1,0 +1,3 @@
+# Packages required for running the tests in Python 2.7 (not required for Python 3)
+
+mock==1.0.1
