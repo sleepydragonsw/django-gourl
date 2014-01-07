@@ -12,7 +12,12 @@ admin.autodiscover()
 
 import gourl.urls
 
-urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'', include(gourl.urls, namespace="gourl")),
+urlpatterns = patterns(
+    "",
+    url(
+        r'^admin/',
+        include(admin.site.urls)),
+    url(
+        r'',
+        include(gourl.urls, namespace="gourl")),
 )

@@ -14,7 +14,8 @@ from .views.ui import remove as remove_view
 from .views.ui import redirect as redirect_view
 from .views.ui import IndexView
 
-urlpatterns = patterns("",
+urlpatterns = patterns(
+    "",
     url(
         r"^$",
         IndexView.as_view(),
