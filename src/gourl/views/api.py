@@ -16,6 +16,7 @@ from ..models import Url
 class WebApi(View):
 
     CONTENT_TYPE_JSON = "application/json"
+    MAX_CONTENT_LENGTH = 8192
 
     def post(self, request):
         """
@@ -48,6 +49,7 @@ class WebApi(View):
         Raises self.Error if an error occurs.
         """
         self._verify_content_type(request)
+        content_length = self._verify_content_length(request)
 
     @classmethod
     def _verify_content_type(cls, request):
@@ -69,6 +71,42 @@ class WebApi(View):
                     "Content-Type HTTP request header has an invalid value: "
                     "{} (expected: {})"
                     .format(content_type, cls.CONTENT_TYPE_JSON))
+
+    @classmethod
+    def _verify_content_length(cls, request):
+        """
+        Verifies that the "Content-Length" HTTP header is specified and is
+        valid.  Returns an int whose value is the content length.
+        *request* must be a django.http.HttpRequest object whose Content-Length
+        HTTP header to verify.
+        Raises self.Error if the Content-Length header is not set or is not
+        valid, such as not being parseable as an integer or being less than
+        zero.
+        """
+        try:
+            content_length_str = request.META["CONTENT_LENGTH"]
+        except KeyError:
+            raise cls.Error("Content-Length HTTP request header missing")
+        else:
+            try:
+                content_length = int(content_length_str)
+            except ValueError:
+                raise cls.Error(
+                    "Content-Length HTTP request header is not a valid : "
+                    "integer: {}"
+                    .format(content_length_str))
+            else:
+                if content_length <= 0:
+                    raise cls.Error(
+                        "Content-Length HTTP request header is less than or "
+                        "equal to zero: {}".format(content_length))
+                elif content_length > cls.MAX_CONTENT_LENGTH:
+                    raise cls.Error(
+                        "Content-Length HTTP request header is larger than "
+                        "the allowed maximum: {} (maximum: {})"
+                        .format(content_length, cls.MAX_CONTENT_LENGTH))
+                else:
+                    return content_length
 
     class Error(Exception):
         """
