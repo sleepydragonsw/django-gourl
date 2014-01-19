@@ -57,7 +57,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'gourl_site.urls'
 
-WSGI_APPLICATION = 'gourl_site.wsgi.application'
+WSGI_APPLICATION = 'gourl_wsgi.wsgi.application'
 
 
 # Database
