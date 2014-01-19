@@ -5,13 +5,21 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.forms.models import ModelForm
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.views.generic import ListView
 
 from ..models import Url
+from django.shortcuts import render_to_response
+
+
+class UrlForm(ModelForm):
+    class Meta:
+        model = Url
+        fields = ("name", "url")
 
 
 class IndexView(ListView):
@@ -25,30 +33,18 @@ def redirect(request, name):
 
 
 def add(request):
-    context = {}
-    if "cancel" in request.POST:
-        return HttpResponseRedirect(reverse("gourl:index"))
-    elif "submit" in request.POST:
-        try:
-            request.POST["submit"]
-            name = request.POST["name"]
-            url = request.POST["url"]
-        except KeyError:
-            pass
-        else:
-            context["name"] = name
-            context["url"] = url
-            name = name.strip()
-            url = url.strip()
+    if "submit" in request.POST:
+        form = UrlForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("gourl:index"))
+    else:
+        form = UrlForm(request.POST)
 
-            if len(name) == 0 or len(url) == 0:
-                context["error"] = "Both name and URL must be specified"
-            else:
-                url_object = Url(name=name, url=url)
-                url_object.save()
-                return HttpResponseRedirect(reverse("gourl:index"))
-
-    return render(request, "gourl/add.html", context)
+    return render(request, "gourl/add.html", {
+        "form": form,
+        "cancel_redirect_url": reverse("gourl:index"),
+    })
 
 
 def remove(request, url_id):
