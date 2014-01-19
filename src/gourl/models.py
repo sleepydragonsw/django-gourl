@@ -11,8 +11,9 @@ from django.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class Url(models.Model):
+
     name = models.CharField(max_length=256)
-    url = models.CharField(max_length=4096)
+    url = models.URLField(max_length=4096)
 
     def __str__(self):
         return self.name
