@@ -22,16 +22,41 @@
 </head>
 
 <body>
-    {% block content %}
-    {% endblock content %}
 
-    {% if USE_CDNS %}
-    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    {% else %}
-    <script src="{% static "gourl/jquery-2.1.0.js" %}" ></script>
-    <script src="{% static "gourl/bootstrap-3.1.1/js/bootstrap.js" %}" ></script>
-    {% endif %}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-gourl-navbar-collapse-1">
+                <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">GoURL</a>
+        </div>
 
-  </body>
+        <div class="collapse navbar-collapse" id="bs-gourl-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Add URL</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        <div>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock content %}
+
+{% if USE_CDNS %}
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+{% else %}
+<script src="{% static "gourl/jquery-2.1.0.js" %}" ></script>
+<script src="{% static "gourl/bootstrap-3.1.1/js/bootstrap.js" %}" ></script>
+{% endif %}
+
+</body>
 </html>
