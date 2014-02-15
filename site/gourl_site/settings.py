@@ -92,3 +92,9 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = [
     os.path.join(BASE_DIR, "gourl_site", "templates"),
 ]
+
+USE_CDNS = True
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "gourl.context.use_cdns",
+)
