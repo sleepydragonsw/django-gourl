@@ -32,16 +32,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">GoURL</a>
+            <a class="navbar-brand" href="{% url "gourl:index" %}">GoURL</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-gourl-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">Add URL</a></li>
+                <li><a href="{% url "gourl:add" %}">{% trans "Add URL" %}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">{% trans "About" %}</a></li>
+                <li><a href="#">{% trans "Contact" %}</a></li>
             </ul>
         <div>
     </div>

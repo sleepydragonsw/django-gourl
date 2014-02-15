@@ -1,26 +1,21 @@
 {% extends "gourl/base.html" %}
 
+{% load i18n %}
+
 {% block content %}
 
-<div>
-<a href="{% url "gourl:add" %}">Add URL</a>
-<br/>
-<br/>
-</div>
+<div class="container">
+    <h2>{% trans "Registered Go URLs" %}</h2>
 
-<table>
-{% for url in url_list %}
-    <tr>
-        <td><a href="{% url "gourl:redirect" url.name %}">{{url.name}}</a></td>
-        <td><a href="{{url.url}}">{{url.url}}</a></td>
-        <td><a href="{% url "gourl:remove" url.id %}">Remove</a></td>
-    </tr>
-{% endfor %}
-</table>
-
+    <table class="table table-striped">
+    {% for url in url_list %}
+        <tr>
+            <td><a href="{% url "gourl:redirect" url.name %}">{{url.name}}</a></td>
+            <td><a href="{{url.url}}">{{url.url}}</a></td>
+            <td><a href="{% url "gourl:remove" url.id %}">Remove</a></td>
+        </tr>
+    {% endfor %}
+    </table>
 <div>
-<br/>
-<a href="{% url "gourl:add" %}">Add URL</a>
-</div>
 
 {% endblock content %}
