@@ -5,5 +5,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from django.apps import AppConfig
 
-default_app_config = "gourl.apps.GoUrlAppConfig"
+
+class GoUrlAppConfig(AppConfig):
+    name = "gourl"
+    verbose_name = "GoURL"
