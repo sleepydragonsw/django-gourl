@@ -9,11 +9,11 @@ from gourl.forms import AddUrlForm
 from gourl.models import Url
 
 from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView
 from django.views.generic import ListView
-from django.core.urlresolvers import reverse_lazy
 
 
 class IndexView(ListView):
@@ -30,9 +30,6 @@ class AddUrlView(CreateView):
     form_class = AddUrlForm
     success_url = reverse_lazy("gourl:index")
     template_name = "gourl/add.html"
-
-    def get(self, request, *args, **kwargs):
-        return super(AddUrlView, self).get(request, *args, **kwargs)
 
 
 def remove(request, url_id):
