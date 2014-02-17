@@ -9,7 +9,7 @@ from django.conf.urls import patterns
 from django.conf.urls import url
 
 from .views.api import WebApi
-from .views.ui import add as add_view
+from .views.ui import AddUrlView
 from .views.ui import remove as remove_view
 from .views.ui import redirect as redirect_view
 from .views.ui import IndexView
@@ -22,7 +22,7 @@ urlpatterns = patterns(
         name="index"),
     url(
         r"^actions/add/$",
-        add_view,
+        AddUrlView.as_view(),
         name="add"),
     url(
         r"^actions/remove/(?P<url_id>\d+)/$",
