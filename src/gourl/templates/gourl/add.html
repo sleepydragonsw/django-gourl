@@ -9,3 +9,11 @@
 </div>
 
 {% endblock content %}
+
+{% block page_suffix %}
+<script>
+    $(document).ready(function() {
+        $("#id_{{ initially_focussed_field.name }}").focus();
+    });
+</script>
+{% endblock page_suffix %}

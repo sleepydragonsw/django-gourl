@@ -31,6 +31,20 @@ class AddUrlView(CreateView):
     success_url = reverse_lazy("gourl:index")
     template_name = "gourl/add.html"
 
+    def get_context_data(self, **kwargs):
+        form = kwargs["form"]
+        initially_focussed_field = self._field_for_initial_focus(form)
+        return super(AddUrlView, self).get_context_data(
+            initially_focussed_field=initially_focussed_field,
+            **kwargs)
+
+    def _field_for_initial_focus(self, form):
+        fields = form.visible_fields()
+        for field in fields:
+            if field.name in form.errors:
+                return field
+        return fields[0]
+
 
 def remove(request, url_id):
     url = get_object_or_404(Url, pk=url_id)
