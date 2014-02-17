@@ -109,3 +109,8 @@ TEMPLATE_CONTEXT_PROCESSORS += ("django.contrib.auth.context_processors.auth",)
 # allow using CDNs or locally-served static versions of stuff
 USE_CDNS = True
 TEMPLATE_CONTEXT_PROCESSORS += ("gourl.context.use_cdns",)
+
+# enable django-crispy-forms
+INSTALLED_APPS += ("crispy_forms",)
+CRISPY_TEMPLATE_PACK = "bootstrap3"
+CRISPY_FAIL_SILENTLY = not DEBUG
