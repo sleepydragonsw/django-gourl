@@ -4,18 +4,42 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container" ng-app="UrlList">
     <h2>{% trans "Registered Go URLs" %}</h2>
 
-    <table class="table table-striped">
-    {% for url in url_list %}
-        <tr>
-            <td><a href="{% url "gourl:redirect" url.name %}">{{url.name}}</a></td>
-            <td><a href="{{url.url}}">{{url.url}}</a></td>
-            <td><a href="{% url "gourl:remove" url.id %}">Remove</a></td>
-        </tr>
-    {% endfor %}
+    {% verbatim %}
+    <table class="table table-striped" ng-controller="UrlList">
+    <tr ng-repeat="url in urls">
+        <td><a href="{{url.local_url}}">{{url.name}}</a></td>
+        <td><a href="{{url.remote_url}}">{{url.remote_url}}</a></td>
+        <td><a href="{{url.remove_url}}">Remove</a></td>
+    </tr>
     </table>
+    {% endverbatim %}
 </div>
 
 {% endblock content %}
+
+{% block page_suffix %}
+<script>
+var urlListModule = angular.module("UrlList", []);
+
+urlListModule.controller("UrlList", function($scope) {
+    $scope.urls = [
+        {% for url in url_list %}
+        {
+            name: "{{url.name|escapejs}}",
+            local_url: "{% url "gourl:redirect" url.name %}",
+            remote_url: "{{url.url|escapejs}}",
+            remove_url: "{% url "gourl:remove" url.id %}",
+        },
+        {% endfor %}
+    ];
+
+    $scope.remove = function(index) {
+        $scope.urls.splice(index, 1);
+    }
+});
+
+</script>
+{% endblock page_suffix %}
